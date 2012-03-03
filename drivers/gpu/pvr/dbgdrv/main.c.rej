@@ -1,0 +1,47 @@
+--- Kernel/drivers/gpu/pvr/dbgdrv/main.c
++++ Kernel/drivers/gpu/pvr/dbgdrv/main.c
+@@ -1,6 +1,6 @@
+ /**********************************************************************
+  *
+- * Copyright(c) 2008 Imagination Technologies Ltd. All rights reserved.
++ * Copyright (C) Imagination Technologies Ltd. All rights reserved.
+  * 
+  * This program is free software; you can redistribute it and/or modify it
+  * under the terms and conditions of the GNU General Public License,
+@@ -116,7 +116,7 @@
+ #if defined(SUPPORT_DRI_DRM)
+ void dbgdrv_cleanup(void)
+ #else
+-void cleanup_module(void)
++static void __exit dbgdrv_cleanup(void)
+ #endif
+ {
+ #if !defined(SUPPORT_DRI_DRM)
+@@ -136,7 +136,7 @@
+ #if defined(SUPPORT_DRI_DRM)
+ IMG_INT dbgdrv_init(void)
+ #else
+-int init_module(void)
++static int __init dbgdrv_init(void)
+ #endif
+ {
+ #if (defined(LDM_PLATFORM) || defined(LDM_PCI)) && !defined(SUPPORT_DRI_DRM)
+@@ -240,7 +240,8 @@
+ 		goto init_failed;
+ 	}
+ 
+-	cmd = ((pIP->ui32Cmd >> 2) & 0xFFF) - 0x801;
++	
++	cmd = MAKEIOCTLINDEX(pIP->ui32Cmd) - DEBUG_SERVICE_IOCTL_BASE - 1;
+ 
+ 	if(pIP->ui32Cmd == DEBUG_SERVICE_READ)
+ 	{
+@@ -309,3 +310,8 @@
+ }
+ 
+ EXPORT_SYMBOL(DBGDrvGetServiceTable);
++
++#if !defined(SUPPORT_DRI_DRM)
++subsys_initcall(dbgdrv_init);
++module_exit(dbgdrv_cleanup);
++#endif
