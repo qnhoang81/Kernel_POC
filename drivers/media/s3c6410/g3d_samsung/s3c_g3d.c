@@ -153,8 +153,8 @@ unsigned long long g_uiFreeMemMap = 0x0;
 #define DEBUG(fmt,args...) do {} while(0)
 #endif
 
-#define G3D_RESERVED_MEM_ADDR_PHY	G3D_RESERVED_MEM_START
-#define G3D_RESERVED_MEM_SIZE		RESERVED_MEM_G3D
+#define G3D_RESERVED_MEM_ADDR_PHY	G3D_RESERVED_START
+#define G3D_RESERVED_MEM_SIZE		RESERVED_G3D
 
 #define G3D_CHUNK_SIZE SZ_1M  //SZ_4M
 
