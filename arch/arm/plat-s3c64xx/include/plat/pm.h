@@ -128,10 +128,10 @@ extern void s3c6410_pm_do_restore_phy(struct sleep_save_phy *ptr, int count);
 extern void s3c6410_pm_do_save(struct sleep_save *ptr, int count);
 extern void s3c6410_pm_do_restore(struct sleep_save *ptr, int count);
 extern int domain_off_check(unsigned int config);
-//#ifdef CONFIG_S3C64XX_DOMAIN_GATING
+#ifdef CONFIG_S3C64XX_DOMAIN_GATING
 extern void s3c_set_normal_cfg(unsigned int config, unsigned int flag, unsigned int ID);
 extern int s3c_wait_blk_pwr_ready(unsigned int config);
-//#endif /* CONFIG_S3C64XX_DOMAIN_GATING */
+#endif /* CONFIG_S3C64XX_DOMAIN_GATING */
 #ifdef CONFIG_PM
 extern int s3c64xx_irq_suspend(struct sys_device *dev, pm_message_t state);
 extern int s3c64xx_irq_resume(struct sys_device *dev);

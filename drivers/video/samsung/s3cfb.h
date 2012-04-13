@@ -100,7 +100,7 @@ extern int s3c6410_timer_setup (int channel, int usec, unsigned long g_tcnt, uns
 #define S3C_FB_SET_BRIGHTNESS		_IOW ('F', 2,  unsigned int)
 #define S3C_FB_WIN_ON			_IOW ('F', 10, unsigned int)
 #define S3C_FB_WIN_OFF			_IOW ('F', 11, unsigned int)
-#define FBIO_WAITFORVSYNC		_IOW ('F', 32, unsigned int)
+//#define FBIO_WAITFORVSYNC		_IOW ('F', 32, unsigned int)
 
 #if defined(CONFIG_FB_S3C_VIRTUAL_SCREEN)
 #define S3C_FB_VS_START			_IO  ('F', 103)

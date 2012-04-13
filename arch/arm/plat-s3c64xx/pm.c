@@ -195,6 +195,7 @@ s3c_wait_blk_pwr_ready_end:
 	return ret;
 }
 EXPORT_SYMBOL(s3c_wait_blk_pwr_ready);
+
 #endif /* CONFIG_S3C64XX_DOMAIN_GATING */
 
 static struct sleep_save core_save[] = {

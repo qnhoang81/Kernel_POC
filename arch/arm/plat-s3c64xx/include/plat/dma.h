@@ -9,4 +9,4 @@
  * it under the terms of the GNU General Public License version 2 as
  * published by the Free Software Foundation.
 */
-#include <plat/s3c-dma.h>
+#include <plat/s3c6410-dma.h>

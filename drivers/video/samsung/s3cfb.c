@@ -120,6 +120,7 @@ static int __init s3cfb_map_video_memory(s3c_fb_info_t *fbi)
 #if 1
 	/* RAM Dump Info */
 //	if ((fbi->win_id == 1) && fbi->map_cpu_f1)
+
 	if ((fbi->win_id == 0) && fbi->map_cpu_f1)
 	{
 		frame_buf_mark.p_fb = (void *)fbi->map_dma_f1;

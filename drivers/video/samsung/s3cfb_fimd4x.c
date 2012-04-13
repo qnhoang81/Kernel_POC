@@ -44,9 +44,9 @@
 #include <linux/i2c/pmic.h>
 #include <linux/i2c/maximi2c.h>
 
-#ifdef CONFIG_S3C64XX_DOMAIN_GATING
-#define USE_LCD_DOMAIN_GATING
-#endif /* CONFIG_S3C64XX_DOMAIN_GATING */
+//#ifdef CONFIG_S3C64XX_DOMAIN_GATING
+//#define USE_LCD_DOMAIN_GATING
+//#endif /* CONFIG_S3C64XX_DOMAIN_GATING */
 
 #if defined(CONFIG_PM)
 #include <plat/pm.h>

@@ -31,7 +31,7 @@
 #define PMEM_MAX_ORDER 128
 #define PMEM_MIN_ALLOC PAGE_SIZE
 
-#define PMEM_DEBUG 1
+#define PMEM_DEBUG 0
 
 /* indicates that a refernce to this file has been taken via get_pmem_file,
  * the file should not be released until put_pmem_file is called */
@@ -336,7 +336,7 @@ static int pmem_open(struct inode *inode, struct file *file)
 	DLOG("current %u file %p(%d)\n", current->pid, file, file_count(file));
 	/* setup file->private_data to indicate its unmapped */
 	/*  you can only open a pmem device one time */
-	if (file->private_data != NULL)
+	if (file->private_data != &pmem[id].dev)
 		return -1;
 	data = kmalloc(sizeof(struct pmem_data), GFP_KERNEL);
 	if (!data) {
@@ -594,7 +594,8 @@ static int pmem_mmap(struct file *file, struct vm_area_struct *vma)
 	down_write(&data->sem);
 	/* check this file isn't already mmaped, for submaps check this file
 	 * has never been mmaped */
-	if ((data->flags & PMEM_FLAGS_SUBMAP) ||
+	if ((data->flags & PMEM_FLAGS_MASTERMAP) ||
+	    (data->flags & PMEM_FLAGS_SUBMAP) ||
 	    (data->flags & PMEM_FLAGS_UNSUBMAP)) {
 #if PMEM_DEBUG
 		printk(KERN_ERR "pmem: you can only mmap a pmem file once, "
@@ -756,7 +757,6 @@ end:
 	fput(file);
 	return -1;
 }
-EXPORT_SYMBOL(get_pmem_file);
 
 void put_pmem_file(struct file *file)
 {
@@ -779,7 +779,6 @@ void put_pmem_file(struct file *file)
 #endif
 	fput(file);
 }
-EXPORT_SYMBOL(put_pmem_file);
 
 void flush_pmem_file(struct file *file, unsigned long offset, unsigned long len)
 {
@@ -821,7 +820,6 @@ void flush_pmem_file(struct file *file, unsigned long offset, unsigned long len)
 end:
 	up_read(&data->sem);
 }
-EXPORT_SYMBOL(flush_pmem_file);
 
 static int pmem_connect(unsigned long connect, struct file *file)
 {
@@ -1089,10 +1087,10 @@ static long pmem_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
 				region.offset = pmem_start_addr(id, data);
 				region.len = pmem_len(id, data);
 			}
-/*
- 			printk(KERN_INFO "pmem: request for physical address of pmem region "
+#if PMEM_DEBUG
+			printk(KERN_INFO "pmem: request for physical address of pmem region "
 					"from process %d.\n", current->pid);
-*/
+#endif
 			if (copy_to_user((void __user *)arg, &region,
 						sizeof(struct pmem_region)))
 				return -EFAULT;
