@@ -74,6 +74,10 @@ source "drivers/regulator/Kconfig"
 
 source "drivers/media/Kconfig"
 
+source "drivers/dpram/Kconfig"
+
+source "drivers/vibetonz/Kconfig"
+
 source "drivers/video/Kconfig"
 
 source "sound/Kconfig"

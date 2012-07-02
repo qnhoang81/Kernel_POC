@@ -113,7 +113,6 @@ deps_config := \
 	drivers/staging/dream/Kconfig \
 	drivers/staging/android/Kconfig \
 	drivers/staging/frontier/Kconfig \
-	drivers/staging/mimio/Kconfig \
 	drivers/staging/rtl8192e/Kconfig \
 	drivers/staging/rtl8192su/Kconfig \
 	drivers/staging/rtl8187se/Kconfig \
@@ -230,6 +229,8 @@ deps_config := \
 	drivers/gpu/vga/Kconfig \
 	drivers/char/agp/Kconfig \
 	drivers/video/Kconfig \
+	drivers/vibetonz/Kconfig \
+	drivers/dpram/Kconfig \
 	drivers/media/s3c6410/cmm/Kconfig \
 	drivers/media/s3c6410/camera/Kconfig \
 	drivers/media/s3c6410/g2d/Kconfig \
