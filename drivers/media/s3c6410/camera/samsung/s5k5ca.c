@@ -76,7 +76,7 @@ static int s5k5ca_sensor_change_size(struct i2c_client *client, int size);
  */
 static camif_cis_t s5k5ca_data = {
 	itu_fmt:       	CAMIF_ITU601,
-	order422:      	CAMIF_CRYCBY,
+	order422:      	CAMIF_CRYCBY, //CAMIF_CRYCBY
 	camclk:        	24000000,		
 	source_x:      	1024,		
 	source_y:      	768,

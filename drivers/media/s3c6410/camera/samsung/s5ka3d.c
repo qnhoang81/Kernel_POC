@@ -84,7 +84,7 @@ static long s5ka3d_set_sensor_mode(struct i2c_client *, int mode);
  */
 static camif_cis_t s5ka3d_data = {
 	itu_fmt:       	CAMIF_ITU601,
-	order422:      	CAMIF_CRYCBY,
+	order422:      	CAMIF_CRYCBY,//CAMIF_CRYCBY
 	camclk:        	24000000,		
 	source_x:      	640,		
 	source_y:      	480,
