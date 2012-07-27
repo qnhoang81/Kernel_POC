@@ -1,0 +1,14 @@
+#
+# dpram subsystem configuration
+#
+
+menu "DPRAM"
+
+config DPRAM
+	tristate "Samsung dpram module"
+	default y
+	help
+		dpram
+
+endmenu
+

@@ -1,0 +1,14 @@
+#
+# Vibrator subsystem configuration
+#
+
+menu "Vibrator"
+
+config VIBETONZ
+	tristate "Samsung vibrator module"
+	default y
+	help
+		vibetonz
+
+endmenu
+
